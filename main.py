@@ -63,7 +63,6 @@ print(bcolors.BOLD + bcolors.HEADER + dung['intro'] + bcolors.ENDC + "\n\n")
 # lets print the first room!
 d.printRoom()
 
-
 # vi initierar lite räknare och metadata saker
 dung_turncount = 0 # hur många turns vi spelat.
 dung_current_room = d.startRoom
@@ -84,7 +83,8 @@ while True:
             if found_swear == 1:
                 comm[0] = 'h'
     except NameError:
-        print("ingasvordomar laddade")
+        pass
+        #print("ingasvordomar laddade")
 
     # kolla alla commandon
     commNotIssued = True
@@ -130,31 +130,36 @@ while True:
                 p.items.append(item)
             else:
                 print(choice(dung['commands']['take']['errorResponse']) + takething + ".")
-
-    elif comm[0] == 'titta' or comm[0] == 'undersök' or comm[0] == 'se':
+    # look command
+    elif comm[0] in dung['commands']['look']['alias']:
         if len(comm) < 2:
             d.printRoom()
         else:
+            comm.pop(0)
+            lookthing = " ".join(comm)
             ritems = d.getRoomItems(p.roomId)
             if len(ritems) > 0:
                 for item in ritems:
-                    if comm[1] == item['name']:
+                    if lookthing == item['name']:
                         print(item['Description'])
             for item in p.items:
-                if comm[1] == item['name']:
+                if lookthing == item['name']:
                     print(item['Description'])
-
-    elif comm[0] == 'gå':
-        # get next part
-        if len(comm) > 1 and comm[1] in d.rooms[p.roomId]['exits']:
-            p.roomId = d.rooms[p.roomId]['exits'][comm[1]]
-            d.enterRoom(p.roomId)
-            d.printRoom()
+    # go command
+    elif comm[0] in dung['commands']['go']['alias']:
+        if len(comm) < 2:
+            print(choice(dung['commands']['go']['emptyResponse']))
         else:
-            print("Du kan inte gå dit.")
-    elif comm[0] == 'släng':
-        print("slängsläng")
-    elif comm[0] == 'hejdå':
+            comm.pop(0)
+            place = " ".join(comm)
+            if place in d.rooms[p.roomId]['exits']:
+                p.roomId = d.rooms[p.roomId]['exits'][place]
+                d.enterRoom(p.roomId)
+                d.printRoom()
+            else:
+                print(choice(dung['commands']['go']['errorResponse']))
+
+    elif comm[0] == dung['endCommand']:
         break
     else: # som sista utväg kolla exits
         if comm[0] in d.rooms[p.roomId]['exits']:
@@ -162,8 +167,10 @@ while True:
             d.enterRoom(p.roomId)
             d.printRoom()
         else:
-            print("Jag förstår inte vad du menar.")
+            print(choice(dung['dontUnderstand']))
 
+    dung_turncount += 1
 
+    # check if 
 
 print("Hejdå! Tack för att du spelade.")

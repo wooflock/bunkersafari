@@ -7,6 +7,9 @@
   "startRoom": "rid1",
   "helptext": "Följande ord kan du skriva. \nhjälp, h\ntag, ta, \nsläng, lämmna, \ngå, vandra, \nlista, saklista, saker, inventarie,\nundersök, granska, inspektera, studera,\ntitta,se\n",
   "askForInput": ["Vad vill du göra? ", "Vad tänker du göra nu? ", "Skriv vad du vill göra "],
+  "endCommand": "sluta",
+  "endmessage": "Ok, tack för att du spelade!",
+  "dontUnderstand": ["vad menar du?", "jag förstår inte.", "Det funkar inte."],
   "commands":
   {
     "help": {
@@ -27,7 +30,9 @@
       "nothingToThrow": "Du har inget att slänga"
     },
     "go": {
-      "name": "gå", "alias": ["vandra"]
+      "alias": ["gå", "vandra"],
+      "emptyResponse": ["Vart ska jag gå?", "Åt vilket håll?"],
+      "errorResponse": ["Du kan inte gå dit", "Det går inte att gå dit."]
     },
     "inventory": {
       "alias": ["lista","saklista","saker","inventarie"],
