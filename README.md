@@ -8,13 +8,17 @@ it would be if we made a computer game where we could explore a graveyard
 just like the one we found, but with quests and exploring of secret underground
 caves and such.
 I remembered the old text games from infocom, like zork, and the old collossal caves
-and started to write it in python, in a way so that it would be easy to 
+and started to write it in python, in a way so that it would be easy to
 add to the adventure by just editing json files.
 
-Then i added support for creating the whole game in json files, and even 
+Then i added support for creating the whole game in json files, and even
 have it in your own language.
 
 Right now the basic principle is this:
+Add generic options to config.json.
+Add your diffrent "rooms" in a json file.
+Add the diffrent items in a item.file
+
 ## config.json
 
 the config.json file includes some basic config. But the main thing is the commands.
@@ -29,9 +33,9 @@ for example:
     },
 ```
 The above is the take command to take some object found in a room.
-The game will not react to the command take if you type it. It will react to the "alias" you give it. 
+The game will not react to the command take if you type it. It will react to the "alias" you give it.
 The one of the emptyResponse items in the list will be typed by the game if you dont specify what
-you are taking. And the errorResponse will be typed by the game if the thing you specify dont exist in the room where you are. The thing you specified will be added to the string as well. (You can not take <thing>) 
+you are taking. And the errorResponse will be typed by the game if the thing you specify dont exist in the room where you are. The thing you specified will be added to the string as well. (You can not take <thing>)
 
 
 ```
@@ -68,5 +72,78 @@ Below is in swedish. Every time the game engine detects one of the swearwords, i
     "Det där hjälper knappast"
   ]
 ```
+## room jason file
+diffrent locations in your textadventure are defined as rooms. They need of course not be rooms inside a house. They can be whatever you want. A grassy field. A road. a town square.
+all rooms have exits that describe to what other rooms you can walk to from the current room.
 
-More to come.. This is a work in progress.
+example of a room.
+```
+"rid1":
+{
+  "colour": "blue",
+  "name": "The old church",
+  "enterDescription": "You are standing in the old church. Light shines in from the old  Out the doors is the townsquare. A small stair leads upwards towards the belltower. ",
+  "exits": { "in": "rid2", "syd": "rid3", "norr": "rid4" }
+},
+```
+The "colour" does not need to be set. but you can set it, if you want to. It will print the "name" part of the description in that colour. (uses ANSI codes, so it will work on apple and linux. Maybee not windows.)
+colours you can use are, red, yellow, green, cyan, mauve, and blue
+
+## items file
+The items file has all the items the player and the game uses.
+
+It can look like this.
+
+```
+"id0":
+{
+  "name": "backpack",
+  "takeMessage": "",
+  "pid": "0",
+  "Description": "A small red backpack that seem to be much bigger on the inside than the outside.",
+  "hint": "backpack",
+  "hint2": "Your red backpack lies here"
+},
+"id1":
+{
+  "name": "umbrella",
+  "takeMessage": "You take the umbrella and place it in your backpack.",
+  "rid": "rid2",
+  "Description": "A big black umbrella. Good to have if it starts to rain.",
+  "hint": "An umbrella is leaning against the wall.",
+  "hint2": "An umbrella is lying here."
+},
+```
+
+The first item has a "pid" That means that the engine at gamestart places that item in the player inventory. Also, items with a "pid" attribute (Player ID) can not be thrown away. So the hint, and hint2 messages are not being used.
+
+The second item is an umbrella.
+When the player enters a room ("rid: rid2", rid = room id), in this case the room with id "rid2", the "hint" is written
+out. If you take the item, the takMessage will be written out. And if you drop the item, the hint2 message will replace the hint message when you enter the room again.
+
+Like this:
+```
+
+The old church
+You are standing in the old church. Light shines in from the old  Out the doors is the townsquare. A small stair leads upwards towards the belltower.
+An umbrella is leaning against the wall.
+There are exits out, up
+What do you want to do? take umbrella
+You take the umbrella and place it in your backpack.
+What do you want to do? look
+
+The old church
+You are standing in the old church. Light shines in from the old  Out the doors is the townsquare. A small stair leads upwards towards the belltower.
+There are exits out, up
+What do you want to do? examine umbrella
+A big black umbrella. Good to have if it starts to rain.
+What do you want to do? drop umbrella
+Dropping umbrella
+What do you want to do? look
+
+The old church
+You are standing in the old church. Light shines in from the old  Out the doors is the townsquare. A small stair leads upwards towards the belltower.
+An umbrella is lying here.
+There are exits out, up
+
+```
