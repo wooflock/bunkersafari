@@ -56,7 +56,34 @@ class Dungeon:
             for item in items:
                 print(item['hint'])
     def printRoom(dungeon):
-        print(dungeon.rooms[dungeon.currentroom]['name'])
+        try: # check if we have defined a colour for our room..
+            dungeon.rooms[dungeon.currentroom]['colour']
+        except KeyError:
+            dungeon.rooms[dungeon.currentroom]['colour'] = None
+
+        colour = dungeon.rooms[dungeon.currentroom]['colour']
+        colourstr = ''
+        endcolourstr = '\033[0m'
+
+        if colour == 'blue':
+            colourstr = '\033[94m'
+        elif colour == 'cyan':
+            colourstr = '\033[96m'
+        elif colour == 'mauve':
+            colourstr = '\033[95m'
+        elif colour == 'yellow':
+            colourstr = '\033[93m'
+        elif colour == 'green':
+            colourstr = '\033[92m'
+        elif colour == 'red':
+            colourstr = '\033[91m'
+        else:
+            endcolourstr = ''
+
+        print("\n" + colourstr + dungeon.rooms[dungeon.currentroom]['name'] + endcolourstr)
+
+        #if colour is not None and (colour == 'blue' or colour == 'cyan' or colour == 'mauve' or colour == 'yellow' or colour == 'green' or colour == 'red'):
+
         print(dungeon.rooms[dungeon.currentroom]['enterDescription'])
         dungeon.printItems()
         # ladda utgångar

@@ -1,12 +1,12 @@
 {
-  "intro": "Hej och välkommen till detta lilla spel jag skrivit! Om du vill veta hur man spelar kan du skriva hjälp.",
+  "intro": "Hej och välkommen till detta lilla spel jag skrivit! \nOm du vill veta hur man spelar kan du skriva hjälp.",
   "gamestop": "Grattis! Du klarade spelet!",
   "roomfile": "room.json",
   "itemfile": "items.json",
   "eventfile": "events.json",
   "startRoom": "rid1",
   "helptext": "Följande ord kan du skriva. \nhjälp, h\ntag, ta, \nsläng, lämmna, \ngå, vandra, \nlista, saklista, saker, inventarie,\nundersök, granska, inspektera, studera,\ntitta,se\n",
-  "askForInput": ["Vad vill du göra? ", "Vad tänker du göra nu? ", "Skriv vad du vill göra ", "?arög ud lliv daV "],
+  "askForInput": ["Vad vill du göra? ", "Vad tänker du göra nu? ", "Skriv vad du vill göra "],
   "commands":
   {
     "help": {

@@ -1,33 +1,104 @@
 {
   "rid1":
   {
+    "colour": "blue",
     "name": "skolgården",
     "enterDescription": "Det är fredag kväll. Solen håller på att gå ner. Det är sommar och svalt i luften. Du står på en skolgård. Du vet inte riktigt hur du kom hit. Men du känner igen skolgården. Det är Vilans skolgård. Du har en ryggsäck på ryggen. ",
     "exits": { "in": "rid2", "syd": "rid3", "norr": "rid4" }
   },
   "rid2":
   {
+    "colour": "mauve",
     "name": "Skolhallen",
     "enterDescription": "Du står i skolans hall. Alla dörrar till klassrumen är låsta. Någon glömde låsa ytterdörren så att du kunde komma in. Det finns lite tavlor som barnen har ritat på väggarna. ",
     "exits": { "ut": "rid1" }
   },
   "rid3":
   {
+    "colour": "cyan",
     "name": "Södra vägen",
     "enterDescription": "Vägen du står på går söderut i vad som känns som en evighet. norrut finns en skola.",
     "exits": { "syd": "rid3", "norr": "rid1" }
   },
   "rid4":
   {
+    "colour": "yellow",
     "name": "Gamla grinden",
     "enterDescription": "Du står vid en gammal grind. Grinden är halft öppen.",
     "exits": { "in": "rid5", "söder": "rid1" }
   },
   "rid5":
   {
+    "colour": "green",
     "name": "Övergiven kyrkogård",
-    "enterDescription": "Du står i ingången till en övergiven kyrkogård.",
-    "exits": { }
+    "enterDescription": "Du står i ingången till en övergiven kyrkogård. Två stora träd står brevid dig. Norrut breder kyrkogården, som nu är en stor övervuxen äng, ut sig med lite träd här och där.",
+    "exits": { "norr": "kid2"}
+  },
+  "kid1":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "Högt gräs döljer några gravstenar som vält. Ett staket runt kyrkogården hindrar dig att gå åt väster och söder.",
+    "exits": { "norr": "kid4", "nordöst": "kid5", "öster": "kid2"}
+  },
+  "kid2":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "Du står i början av ängen som brer ut sig framför dig norrut och öster och väster ut. Söder ut, mellan två stora träd kan du skymta grinden du kom in genom.",
+    "exits": { "norr": "kid5", "nordöst": "kid6", "öster": "kid3", "söder": "rid5", "väst": "kid1", "nordväst": "kid4"}
+  },
+  "kid3":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "Du står i sydöstra hörnet av kyrkogården. En familjegrav skymtar under ett träd. Det är som ett litet hus byggt i sten med ett snett kors på taket. En liten stendörr är på glänt.",
+    "exits": { "norr": "kid6", "nordväst": "kid5", "väst": "kid2", "in": "gid1"}
+  },
+  "kid4":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "",
+    "exits": { "norr": "kid7", "nordöst": "kid8", "öster": "kid5", "sydöst": "kid2", "söder": "kid1"}
+  },
+  "kid5":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "Du står i mitten av kyrkogården. En gammal grav med svårtydbar text. ",
+    "exits": { "norr": "kid8", "nordöst": "kid9", "öster": "kid6", "sydöst": "kid3", "söder": "kid2", "sydväst": "kid1", "väster": "kid4" }
+  },
+  "kid6":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "",
+    "exits": { "norr": "kid9", "nordväst": "kid8", "väst": "kid5", "sydväst": "kid2", "söder": "kid3"}
+  },
+  "kid7":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "",
+    "exits": { "öster": "kid8", "sydöst": "kid5", "söder": "kid4" }
+  },
+  "kid8":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "",
+    "exits": { "öster": "kid9", "sydöst": "kid6", "söder": "kid5", "sydväst": "kid4", "väster": "kid7" }
+  },
+  "kid9":
+  {
+    "name": "Övergiven kyrkogård",
+    "enterDescription": "",
+    "exits": { "söder": "kid6", "sydväst": "kid5", "väster": "kid8" }
+  },
+  "gid1":
+  {
+    "name": "Gravtrappan",
+    "enterDescription": "En fuktig kyla finns innanför gravdörren. Det är mörkt och luktar jord. En mörk trappa leder nedåt.",
+    "exits": {"ut": "kid3", "ner": "gid2"}
+  },
+  "gid2":
+  {
+    "name": "Familjegraven",
+    "enterDescription": "Du står i en stor gravkammare. Längs med ena väggen är det fack med kistor i. Kistorna har murknat. Det är mörkt och svalt.",
+    "exits": {}
   }
 
 }

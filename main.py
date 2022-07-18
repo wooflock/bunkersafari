@@ -59,17 +59,8 @@ p = Player(d.startRoom)
 p.items = d.getPlayerItems()
 d.enterRoom(p.roomId)
 
-print(f"{bcolors.HEADER} HEADER {bcolors.ENDC}")
-print(f"{bcolors.WARNING} WARNING {bcolors.ENDC}")
-print(f"{bcolors.OKBLUE} OKBLUE {bcolors.ENDC}")
-print(f"{bcolors.OKCYAN} OKCYAN {bcolors.ENDC}")
-print(f"{bcolors.OKGREEN} OKGREEN {bcolors.ENDC}")
-print(f"{bcolors.FAIL} FAIL {bcolors.ENDC}")
-print(f"{bcolors.BOLD} BOLD {bcolors.ENDC}")
-print(f"{bcolors.UNDERLINE} UNDERLINE {bcolors.ENDC}")
-
-print(dung['intro'])
-
+print(bcolors.BOLD + bcolors.HEADER + dung['intro'] + bcolors.ENDC + "\n\n")
+# lets print the first room!
 d.printRoom()
 
 
