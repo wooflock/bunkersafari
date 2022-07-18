@@ -1,4 +1,5 @@
-# json-textadventure-engine
+# bunkersafari
+## A json textadventure engine
 A small engine to create classic text adventures using json files.
 
 This started out as a small project when my son and i found and old
