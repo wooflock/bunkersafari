@@ -1,0 +1,29 @@
+{
+  "id0":
+  {
+    "name": "ryggis",
+    "takeMessage": "",
+    "pid": "0",
+    "Description": "En röd liten ryggsäck med norska flaggan på",
+    "hint": "ryggsäck",
+    "hint2": "Din röda ryggsäck ligger här"
+  },
+  "id1":
+  {
+    "name": "paraply",
+    "takeMessage": "Du tar paraplyet och stoppar i ryggsäcken.",
+    "rid": "rid2",
+    "Description": "Ett stort svart paraply. Bra att ha om det regnar",
+    "hint": "Ett paraply står lutat mot väggen.",
+    "hint2": "Ett paraply ligger här."
+  },
+  "id2":
+  {
+    "name": "eldris",
+    "takeMessage": "Du tar eldris kniven och hänger den runt din hals i snöret",
+    "rid": "rid2",
+    "Description": "Mora eldris. En liten grön kniv med eldstål. den har ett snöre man kan hänga den kring halsen med.",
+    "hint": "En liten kniv, en eldris, ligger på em hylla som det står Leo på.",
+    "hint2": "Din eldris kniv ligger här."
+  }
+}

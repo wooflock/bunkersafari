@@ -1,0 +1,56 @@
+{
+  "intro": "Hej och välkommen till detta lilla spel jag skrivit! Om du vill veta hur man spelar kan du skriva hjälp.",
+  "gamestop": "Grattis! Du klarade spelet!",
+  "roomfile": "room.json",
+  "itemfile": "items.json",
+  "eventfile": "events.json",
+  "startRoom": "rid1",
+  "helptext": "Följande ord kan du skriva. \nhjälp, h\ntag, ta, \nsläng, lämmna, \ngå, vandra, \nlista, saklista, saker, inventarie,\nundersök, granska, inspektera, studera,\ntitta,se\n",
+  "askForInput": ["Vad vill du göra? ", "Vad tänker du göra nu? ", "Skriv vad du vill göra ", "?arög ud lliv daV "],
+  "commands":
+  {
+    "help": {
+      "alias": ["hjälp", "h"],
+      "responses": ["Här får du lite hjälp", "Behöver du hjälp på traven?", "Kan du inte detta nu?", "Vassego, här är hjälpen du bad om", "Nurgle är kungen i Whaoouuuöö.. Host Host.. Hjälp var det vist du skulle ha!"],
+      "response": "Följande ord kan du skriva. \nhjälp, h\ntag, ta, \nsläng, lämmna, \ngå, vandra, \nlista, saklista, saker, inventarie,\nundersök, granska, inspektera, studera,\ntitta,se\n"
+    },
+    "take": {
+      "alias": ["tag","ta"],
+      "emptyResponse": ["Vad är det du vill ta?", "Ta vaddå?", "Ta luft?"],
+      "errorResponse": ["Du kan inte ta ", "Det går inte att ta ", "Nej det går inte att ta "]
+    },
+    "drop": {
+      "alias": ["släng","lämmna", "kasta"],
+      "emptyResponse": ["Vad är det du vill slänga?","Du måste säga vad", "Släng vaddå?"],
+      "response": ["Slänger ","Kastar ","Sular iväg ", "Hejdå "],
+      "errorResponse": "Du kan inte slänga ",
+      "nothingToThrow": "Du har inget att slänga"
+    },
+    "go": {
+      "name": "gå", "alias": ["vandra"]
+    },
+    "inventory": {
+      "alias": ["lista","saklista","saker","inventarie"],
+      "response": ["Du har: ", "Du bär på: ", "Följande prylar har du:", "Saker du har: ", "Skit du släpar på: "]
+    },
+    "examine": {"alias": ["undersök","granska","inspektera","studera"] },
+    "look": {"alias": ["titta","se"] },
+    "use": {"alias": ["använd","nyttja"], "middlewords": ["med","på","i"]}
+  },
+  "swearwords":
+  [
+    "fan","röv","helvete","skit","piss","djävla","kuk","fitta","pingvindjävul"
+  ],
+  "swear_responses":
+  [
+    "Jag förstår inte varför du skriver fula ord.",
+    "Du känner hur ordet du skriver smakar illa i munnen. Tvätta genast munnen med tvål!",
+    "En STOR FET DRAKE HOPPAR UPP OCH BITER HUVUDET AV DIG!! Nej jag bara skojar. Men svär inte tack!",
+    "Tycker du att du låter intelligent när du skriver så?",
+    "Lugna ner dig ett hekto va? måste du svära?",
+    "Kan du inte några bättre ord än så?",
+    "Du har klarat hela spelet!! Hurra hurra hurra hurra!!! Eller trodde du det egentligen va? Att du kan klara spelet genom att skriva svordomar? klart du inte kan!",
+    "Det där hjälper knappast"
+  ]
+
+}
