@@ -147,3 +147,11 @@ An umbrella is lying here.
 There are exits out, up
 
 ```
+
+Events and triggers
+
+You can define events. for example adding and removing things in a room. adding and removing exits and writing out extra messages.
+
+every event is triggered by something. You can add triggers on number of turns, number of times someone is in a certain room.. If an item is brough into a room on the player, or if an item exits in the room.
+
+
