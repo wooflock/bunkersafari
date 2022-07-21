@@ -25,5 +25,23 @@
     "Description": "Mora eldris. En liten grön kniv med eldstål. den har ett snöre man kan hänga den kring halsen med.",
     "hint": "En liten kniv, en eldris, ligger på em hylla som det står Leo på.",
     "hint2": "Din eldris kniv ligger här."
+  },
+  "id3":
+  {
+    "name": "bläckis",
+    "takeMessage": "Du tar din älskade bläckis.",
+    "rid": "none",
+    "Description": "Ett rött mjukisdjur föreställande en tioarmad bläckfisk.",
+    "hint": "Bläckis har krupit fram och ligger och tittar på dig.",
+    "hint2": "Bläckis ligger här och undrar varför du slängt bort honom."
+  },
+  "id4":
+  {
+    "name": "blåckis",
+    "takeMessage": "Du tar din älskade blåckis.",
+    "rid": "none",
+    "Description": "Ett blått mjukisdjur föreställande en tioarmad bläckfisk.",
+    "hint": "Blåckis har krupit fram och ligger och tittar på dig.",
+    "hint2": "Blåckis ligger här och undrar varför du slängt bort honom."
   }
 }

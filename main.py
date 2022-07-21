@@ -7,6 +7,7 @@ from random import choice
 from datetime import datetime
 
 from dungeon import Dungeon
+from player import Player
 
 class bcolors:
     HEADER = '\033[95m'
@@ -19,32 +20,6 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-class Player:
-    def __init__(player,roomId):
-        player.roomId = roomId
-        player.items = []
-    def listItems(player):
-        lista = []
-        if len(player.items) > 0:
-            for i in player.items:
-                lista.append(i['name'])
-        app = ", "
-        return app.join(lista)
-    def getItemByName(player,name):
-        item = []
-        for i in player.items:
-            if name == i['name'] and not 'pid' in i:
-                return i
-        return item
-    def removeItem(player,id):
-        c = 0
-        rid = -1
-        for item in player.items:
-            if item['id'] == id:
-                rid = c
-            c += 1
-        if rid > -1:
-            del player.items[rid]
 
 # nu börjar vi
 seed(datetime.now())
@@ -54,7 +29,7 @@ dung = json.load(dmf)
 # vi skriver ut dung['intro'] när spelet börjar
 # och vi skriver ut dung['outro'] när vi kommer till ett
 # rum utan någon exit. Då har vi klarat spelet.
-d = Dungeon(dung['roomfile'],dung['itemfile'], dung['startRoom'])
+d = Dungeon(dung['roomfile'],dung['itemfile'], dung['eventfile'],dung['startRoom'])
 p = Player(d.startRoom)
 p.items = d.getPlayerItems()
 d.enterRoom(p.roomId)
@@ -64,13 +39,16 @@ print(bcolors.BOLD + bcolors.HEADER + dung['intro'] + bcolors.ENDC + "\n\n")
 d.printRoom()
 
 # vi initierar lite räknare och metadata saker
-dung_turncount = 0 # hur många turns vi spelat.
+
 dung_current_room = d.startRoom
 
 # lite ord vi vill hålla koll på
 # ta emot våra commandon
 while True:
+    d.playerItems = p.items
     data = input(bcolors.OKGREEN + choice(dung['askForInput']) + bcolors.ENDC)
+    if len(data) < 1:
+        data = "nonsense" # so we always act on something. even just return.
     comm = data.split()
     # först kollar vi lite svordomar..
     try:
@@ -86,8 +64,13 @@ while True:
         pass
         #print("ingasvordomar laddade")
 
-    # kolla alla commandon
-    commNotIssued = True
+    # only count commands we understand and care about. Not help, or iventory
+    # will check this at the end. of loop
+    something_happened = False
+
+    # check for triggers and run events
+    #d.checkTriggers()
+
     # help command
     if comm[0] in dung['commands']['help']['alias']:
         print(choice(dung['commands']['help']['responses']))
@@ -108,9 +91,11 @@ while True:
                 throwthing = " ".join(comm)
                 i = p.getItemByName(throwthing)
                 if len(i) > 0:
+                    d.count += 1
                     print(choice(dung['commands']['drop']['response']) + i['name'])
                     d.addItem(p.roomId,i)
                     p.removeItem(i['id'])
+                    something_happened = True
                 else:
                     print(dung['commands']['drop']['errorResponse'] + throwthing)
             else: # player has nothing to throw
@@ -124,16 +109,20 @@ while True:
             takething = " ".join(comm)
             item = d.getRoomItemByName(p.roomId, takething)
             if len(item) > 0:
-                print(item['takeMessage'])
+                d.count += 1
                 # ta bort från dungeon
                 d.removeItem(item['id'])
                 p.items.append(item)
+                print(item['takeMessage'])
+                something_happened = True
             else:
                 print(choice(dung['commands']['take']['errorResponse']) + takething + ".")
     # look command
     elif comm[0] in dung['commands']['look']['alias']:
         if len(comm) < 2:
+            d.count += 1
             d.printRoom()
+            something_happened = True
         else:
             comm.pop(0)
             lookthing = " ".join(comm)
@@ -141,10 +130,14 @@ while True:
             if len(ritems) > 0:
                 for item in ritems:
                     if lookthing == item['name']:
+                        d.count += 1
                         print(item['Description'])
+                        something_happened = True
             for item in p.items:
                 if lookthing == item['name']:
+                    d.count += 1
                     print(item['Description'])
+                    something_happened = True
     # go command
     elif comm[0] in dung['commands']['go']['alias']:
         if len(comm) < 2:
@@ -153,9 +146,11 @@ while True:
             comm.pop(0)
             place = " ".join(comm)
             if place in d.rooms[p.roomId]['exits']:
+                d.count += 1
                 p.roomId = d.rooms[p.roomId]['exits'][place]
                 d.enterRoom(p.roomId)
                 d.printRoom()
+                something_happened = True
             else:
                 print(choice(dung['commands']['go']['errorResponse']))
 
@@ -163,14 +158,18 @@ while True:
         break
     else: # som sista utväg kolla exits
         if comm[0] in d.rooms[p.roomId]['exits']:
+            d.count += 1
             p.roomId = d.rooms[p.roomId]['exits'][comm[0]]
             d.enterRoom(p.roomId)
             d.printRoom()
+            something_happened = True
         else:
             print(choice(dung['dontUnderstand']))
 
-    dung_turncount += 1
+#    dung_turncount += 1
+#    if something_happened:
 
-    # check if 
 
-print("Hejdå! Tack för att du spelade.")
+
+
+print(dung['gamestop'])

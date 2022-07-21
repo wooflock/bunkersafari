@@ -1,0 +1,79 @@
+{
+  "triggers":
+  {
+      "tid1":
+      {
+        "type": "counter",
+        "eventId": "eid0",
+        "value": 5
+      },
+      "tid2":
+      {
+        "type": "roomCounter",
+        "eventId": "eid4",
+        "value": 5,
+        "roomId": "rid2"
+      },
+      "tid3":
+      {
+        "type": "enterRoom",
+        "eventId": "eid1",
+        "roomId": "rid5",
+        "times": 1
+      },
+      "tid4":
+      {
+        "type": "itemInRoom",
+        "eventId": "eid2",
+        "itemId": "id3",
+        "roomId": "rid2",
+        "times": -1
+      },
+      "tid6":
+      {
+        "type": "itemInRoom",
+        "eventId": "eid3",
+        "itemId": "id2",
+        "roomId": "rid2",
+        "times": 1
+      },
+      "tid5":
+      {
+        "type": "itemWithItem"
+      }
+  },
+  "events":
+  {
+    "eid2":
+    {
+      "type": "writeMessage",
+      "message": " Bläckis slingrar med armarna och ger dig en kram. han gillar detta rummet."
+    },
+    "eid3":
+    {
+      "type": "delExitToRoom",
+      "roomId": "rid5",
+      "exit": "norr",
+      "addEnterDescription": " Vägen ut försvann precis."
+    },
+    "eid0":
+    {
+      "type": "addItemToRoom",
+      "roomId": "current",
+      "itemId": "id3"
+    },
+    "eid4":
+    {
+      "type": "addItemToRoom",
+      "roomId": "current",
+      "itemId": "id4"
+    },
+    "eid1":
+    {
+      "type": "addExitToRoom",
+      "roomId": "rid5",
+      "exit": {"ut": "rid4"},
+      "addEnterDescription": " Det finns en väg ut också."
+    }
+  }
+}
